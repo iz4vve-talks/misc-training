@@ -1,0 +1,272 @@
+#+theme=optum
+A tour of Python
+#What should I use when...?
+6 Jun 2018
+Tags: optum, training, python
+
+Pietro Mascolo
+Sr. Data Scientist, Optum Ireland
+pietro_mascolo@optum.com
+@iz4vve
+
+###############################################################
+* Contents
+
+- Data structures;
+- control flow;
+- Basic OOP;
+- Advanced concepts.
+
+###############################################################
+* The Zen of Python
+
+.play code/this.py
+
+###############################################################
+* Data structures
+
+
+###############################################################
+* Generic containers
+
+.image imgs/types.png 450 _
+.caption Data structures high-level overview
+
+###############################################################
+* Base data structures
+
+###############################################################
+* list and tuple
+
+.play code/containers.py /^# define/,/a_list\[0\] = 10/
+
+Tuples are immutable!
+
+.play code/containers_error.py /^a_tuple\[0\] = /,//
+
+###############################################################
+* Modifying a list
+
+.play code/lists.py  /^a_list/,/5\]  /
+
+These obviously don't work on tuples as they are immutable.
+
+###############################################################
+* So...
+Lists are:
+
+- dynamic arrays;
+- in-memory;
+- optimised for random access;
+- inefficient for appending and prepending elements (they are not optimised for this!).
+
+Tuples are:
+
+- fixed arrays;
+- *IMMUTABLE*;
+- not used as often as lists.
+
+#: Mention deques for appen/prepend operations
+
+###############################################################
+* set
+A set is an unordered collection with no duplicate values.
+.code code/sets.py /DEFINE OMIT/,/DEFINE END OMIT/
+.play code/sets.py /OPERATIONS OMIT/,/OPERATIONS END OMIT/
+
+
+###############################################################
+* dict
+Dictionaries are represented by a `key:value` pair. The keys can be of any immutable type and must be unique. The values can be of any type, mutable or immutable.
+.code code/dict.py /DEFINE OMIT/,/DEFINE END OMIT/
+.play code/dict.py /OPERATIONS OMIT/,/OPERATIONS END OMIT/
+
+Trying to access a non-existing key, will give a `KeyError`:
+
+  vowels[10]
+  
+  Traceback (most recent call last):
+    File "<stdin>", line 13, in <module>
+  KeyError: 10
+
+###############################################################
+* Comprehensions
+
+These are equivalent contructors:
+
+.play code/comprehensions.py /START OMIT/,/END OMIT/
+
+This also works on other data structures:
+
+.play code/more_comprehensions.py /START OMIT/,/END OMIT/
+
+###############################################################
+* When to use what
+
+###############################################################
+* When to use lists
+Use a `list` when:
+
+- you need a mixed collection of data all in one place.
+- the data needs to be ordered.
+- your data requires the ability to be changed or extended.
+- you don't require data to be indexed by a custom value. You just need to know the position of an element to retrieve it.
+- you need a stack or a queue (although a `list` is not optimised for this, a `deque` is).
+- your data doesn't have to be unique.
+
+###############################################################
+* When to use sets
+Use a `set` when:
+
+- you need a unique set of data: Sets check the unicity of elements based on hashes.
+- your data constantly changes: Sets, just like lists, are mutable.
+- you need a collection that can be manipulated mathematically.
+- you don't need to store nested lists, sets, or dictionaries in a data structure: Sets don't support unhashable types.
+- you need to do *A*LOT* of membership check ('`item`in`set`' is _O(1)_).
+
+###############################################################
+* When to use tuples
+Use a `tuple` when:
+
+- you need to store data that doesn't have to change.
+- the performance of the application is very important: use tuples whenever you have fixed data collections.
+- you want to store your data in logical immutable pairs, triples etc.
+- you need to generate dictionaries with multiple values as keys.
+
+###############################################################
+* When to use dictionaries
+Use a `dict` when:
+
+- you need a logical association between a `key:value` pair.
+- you need fast lookup for your data, based on a custom key.
+- your data is being constantly modified.
+- you need a lot of lookups (for a `dict` it's _O(1)_).
+
+###############################################################
+* Choose you data structure carefully
+
+###############################################################
+* Sub-optimal data structure
+
+.play code/bad_code.py /START OMIT/,/END OMIT/
+
+###############################################################
+* Better data structure
+
+.play code/good_code.py /START OMIT/,/END OMIT/
+
+
+###############################################################
+* Control flow
+
+###############################################################
+* if..elif..else
+Syntax:
+
+  if condition:
+      ...
+  elif other_condition:
+      ...
+  else:
+      ...
+
+###############################################################
+* for 1/2
+What a C programmer might do:
+
+  for i in range(len(collection)):
+      do_something(collection[i])
+
+What you should do:
+
+  for item in collection:
+      do_something(item)
+
+What if I *NEED* an index?
+
+  for n, item in enumerate(collection):
+      ...
+
+
+###############################################################
+* for 2/2
+
+Did you know that `for` has an `else` clause?
+
+.play code/for_else.py /START OMIT/,/END OMIT/
+
+###############################################################
+* while
+
+The `while` loop in Python is not commonly used; most of its appearances are due to old style APIs or the infinite '`while`True:`' loop.
+
+.play code/while.py /START OMIT/,/END OMIT/
+
+###############################################################
+* Interlude
+
+.code code/exercise.py
+
+
+###############################################################
+* Iterators & generators
+
+
+###############################################################
+* Generic iterators
+What is a container/sequence/iterable?
+
+.image imgs/relationships.png 450 _
+
+###############################################################
+* Why iterators?
+
+.code code/iterators.py
+
+###############################################################
+* Generators
+
+Generator functions
+
+.code code/generators.py
+
+Generator objects
+
+.play code/gen_object.py /START OMIT/,/END OMIT/
+
+###############################################################
+* Elements of functional programming
+
+`map`
+
+.code code/functional.py /MAP OMIT/,/END MAP OMIT/
+
+`filter`
+
+.play code/functional.py /FILTER OMIT/,/END FILTER OMIT/
+
+Although this is preferred now (Python 3.4+)
+
+.code code/functional.py /EQUIVALENT OMIT/,/END EQUIVALENT OMIT/
+
+
+###############################################################
+* Small exercises
+
+Ex. 1
+  Find out how many bytes of data were transferred by summing up the last column of data in this Apache web server log
+
+  81.107.39.38 - ... "GET /ply/ HTTP/1.1" 200 7587
+  81.107.39.38 - ... "GET /favicon.ico HTTP/1.1" 404 -
+  81.107.39.38 - ... "GET /ply/bookplug.gif HTTP/1.1" 200 23903
+  81.107.39.38 - ... "GET /ply/ply.html HTTP/1.1" 200 97238
+  81.107.39.38 - ... "GET /ply/example.html HTTP/1.1" 200 2359
+  66.249.72.134 - ... "GET /index.html HTTP/1.1" 200 4447
+
+
+The log file might be huge (several Gb)...
+
+Ex.2
+
+  Write a script that takes one string argument.
+  The script should then do a Google search for that argument and return the number of hits.

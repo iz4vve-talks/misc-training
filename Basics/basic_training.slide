@@ -1,0 +1,185 @@
+#+theme=optum
+Basic training
+#Linux, Python, Coding practices, Version control
+06 Jun 2018
+Tags: optum, europython, python, 2018
+
+Pietro Mascolo
+Sr. Data Scientist, Optum Ireland
+pietro_mascolo@optum.com
+
+@iz4vve
+
+#*Slides*and*code*: [[https://bit.ly/2J6xIzj]]
+
+
+##############################################################################
+
+* Contents
+
+- Linux basics;
+- navigating the shell;
+- installing and configuring Anaconda;
+- basic Python;
+- general coding practices;
+- installing and configuring `git`;
+- `git` basics;
+- collaborative workflow.
+
+##############################################################################
+
+* Linux
+
+* Basic commands
+
+.code code/bash/basics.sh
+
+##############################################################################
+
+* Slightly more advanced commands
+
+.code code/bash/advanced.sh
+
+# : Get well acquainted with:
+# : - basic CLI commands;
+# :- the filesystem;
+# : - vim.
+
+
+##############################################################################
+
+* Python
+
+###################################
+
+* Installing a Python interpreter
+
+We usually use Anaconda. It bundles a lot of packages that we usually need.
+
+Installing Anaconda:
+
+  $ cd ~/Downloads
+  $ wget https://repo.continuum.io/archive/Anaconda3-5.2.0-MacOSX-x86_64.sh  # MacOSX
+  $ bash Anaconda3-5.2.0-MacOSX-x86_64.sh
+
+Using pip/conda:
+
+  $ pip install/uninstall package
+  $ conda install package
+
+###################################
+
+* Python basics
+
+Refer to Python slides
+
+##############################################################################
+
+* Coding practices
+
+* Readability matters
+
+.code code/other/fibonacci.apl
+.code code/other/fibonacci.c
+.code code/other/fibonacci.wrapl
+.code code/python/fibonacci.py
+
+
+#.image imgs/
+
+###################################
+* Architecture first
+
+.image imgs/architecture.png _ 650
+
+###################################
+* Test!
+
+.image imgs/tests.jpg _ 800
+
+###################################
+* Keep it simple
+
+.image imgs/simple.png _ 900
+
+###################################
+* Code reviews
+
+.image imgs/code_quality.png _ 800
+
+###################################
+*  Add (useful) comments
+
+.image imgs/comments.png _ 800
+
+###################################
+*  Iterate
+
+.image imgs/iterations.jpg _ 500
+
+###################################
+* Summing up
+
+.play code/python/this.py /START OMIT/,/END OMIT/
+
+##############################################################################
+
+* git
+
+###################################
+
+* What is git
+Git is a free and open source version control system. 
+Git is distributed: every developer has the full history of their code repository locally.
+Git is decentralised: every developer works on a local copy. Their changes are then merged with the remote repository.
+
+###################################
+
+* Example workflow
+
+- Create a `repository` (project) with a git hosting tool;
+- `clone` the repository to your local machine;
+- (create a `branch`;)
+- do your work in your local repo and `commit` the changes;
+- `pull` the changes from the repository to make sure your local branch is updated;
+- open a `pull`request` (propose changes to the master branch);
+- get your changes reviewed and `merged`.
+
+###################################
+
+* External resources
+
+Learning:
+
+- [[https://atlassian.com/git/tutorials/what-is-version-control]]
+- [[https://atlassian.com/git]]
+- [[https://try.github.io]]
+- [[https://learngitbranching.js.org]]
+
+Tools:
+
+- Sourcetree (Atlassian);
+- GitKraken;
+- VCS module in your favourite editor;
+
+or just use the command line :)
+
+
+
+##############################################################################
+
+* Your workflow
+
+#Don't step on anyone's toes! Do things properly.
+
+.image imgs/git_workflow.png  _ 750
+
+
+* Collaborative workflow
+
+.image imgs/git-flow.png _ 400
+
+
+* 
+
+.image imgs/gitout.jpg  _ 700 
